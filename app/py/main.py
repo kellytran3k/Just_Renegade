@@ -3,6 +3,10 @@ import time
 import sys
 
 while True:
-    print("AAAA")
+    send("hello world")
     time.sleep(1)
+
+
+def send(message):
+    print(message)
     sys.stdout.flush()
