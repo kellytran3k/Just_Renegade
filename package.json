@@ -2,7 +2,7 @@
   "name": "just_renegade",
   "version": "1.0.0",
   "description": "Just Dance desktop app",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "start": "electron ."
   },
