@@ -13,4 +13,4 @@ npm install
 npm start
 ```
 
-...and you have a running desktop application on your screen.
+and you have a running desktop application on your screen.
