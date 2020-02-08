@@ -3,21 +3,30 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Hello World!</title>
+  <title>Just Renegade</title>
   <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!--CSS-->
+  <link rel="stylesheet" href="index.css">
+  <!--font-->
+  <link href="https://fonts.googleapis.com/css?family=League+Script&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-  <div class='container main-title text-center'>
+  <div class='container sign text-center'>
+    <h1 class='sign__word'>Just Renegade</h1>
     <h1>Just Dance</h1>
     <button id="button" type="button">Toggle</button>
     <p></p>
-    <img id="viewport" src=""/>
+    <img id="viewport" src="" />
+
   </div>
+  <div id='cursor'></div>
+
 </body>
 
 <script src="renderer.js"></script>
