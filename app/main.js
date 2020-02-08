@@ -1,27 +1,12 @@
 const electron = require("electron");
 const { app, BrowserWindow } = require("electron");
 
+var windowReference = null;
+
 const { PythonShell } = require('python-shell');
 const py_main = app.getAppPath() + "/app/py/main.py"
 
 function createWindow() {
-  // Use python shell
-  var pyshell = new PythonShell(py_main);
-
-  pyshell.on('message', function (message) {
-      // received a message sent from the Python script (a simple "print" statement)
-      console.log("[py] " + message);
-  });
-
-  // end the input stream and allow the process to exit
-  pyshell.end(function (err) {
-      if (err) {
-          throw err;
-      }
-
-      console.log('main python script finished');
-  });
-
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
@@ -31,9 +16,13 @@ function createWindow() {
     }
   });
 
+  windowReference = win;
+
   // and load the index.html of the app.
   win.loadFile("app/index.html");
 
+  runPython()
+  
   //open dev tools
   win.webContents.openDevTools();
 
@@ -66,3 +55,28 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function runPython() {
+  // Use python shell
+  var pyshell = new PythonShell(py_main);
+
+  pyshell.on('message', function (message) {
+      // received base64 encoded image, display
+      sendToDom('document.getElementById("viewport").setAttribute("src", "data:image/png;base64,' + message + '")')
+  });
+
+  // end the input stream and allow the process to exit
+  pyshell.end(function (err) {
+      if (err) {
+          throw err;
+      }
+
+      console.log('main python script finished');
+  });
+}
+
+function sendToDom(command) {
+  windowReference.webContents.executeJavaScript(command, function (result) {
+    console.log(result)
+  });
+}
