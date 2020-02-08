@@ -1,27 +1,20 @@
 const electron = require("electron");
 const { app, BrowserWindow } = require("electron");
+const { ipcMain } = require('electron')
 
 const { PythonShell } = require('python-shell');
 const py_main = app.getAppPath() + "/app/py/main.py"
 
+const GameState = {
+  "MENU": 0,
+  "DANCING": 1
+};
+
+var gameState = GameState.MENU;
+
+var windowReference = null;
+
 function createWindow() {
-  // Use python shell
-  var pyshell = new PythonShell(py_main);
-
-  pyshell.on('message', function (message) {
-      // received a message sent from the Python script (a simple "print" statement)
-      console.log("[py] " + message);
-  });
-
-  // end the input stream and allow the process to exit
-  pyshell.end(function (err) {
-      if (err) {
-          throw err;
-      }
-
-      console.log('main python script finished');
-  });
-
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
@@ -31,9 +24,13 @@ function createWindow() {
     }
   });
 
+  windowReference = win;
+
   // and load the index.html of the app.
   win.loadFile("app/index.html");
 
+  runPython()
+  
   //open dev tools
   win.webContents.openDevTools();
 
@@ -44,6 +41,12 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow);
 
+// Register IPC
+ipcMain.on('message', (event, arg) => {
+  if (arg == 'toggle-state') {
+    toggleState();
+  }
+})
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -66,3 +69,37 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function toggleState() {
+  if (gameState == GameState.MENU) {
+    gameState = GameState.DANCING;
+    sendToRenderer('viewport-state', 'visible');
+  } else if (gameState == GameState.DANCING) {
+    gameState = GameState.MENU;
+    sendToRenderer('viewport-state', 'hidden');
+  }
+}
+
+function runPython() {
+  // Use python shell
+  var pyshell = new PythonShell(py_main);
+
+  pyshell.on('message', (message) => {
+    if (gameState == GameState.DANCING) {
+      sendToRenderer('image', message);
+    }
+  });
+
+  // end the input stream and allow the process to exit
+  pyshell.end(function (err) {
+      if (err) {
+          throw err;
+      }
+
+      console.log('main python script finished');
+  });
+}
+
+function sendToRenderer(title, message) {
+  windowReference.webContents.send(title, message);
+}
