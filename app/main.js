@@ -1,10 +1,18 @@
 const electron = require("electron");
 const { app, BrowserWindow } = require("electron");
-
-var windowReference = null;
+const { ipcMain } = require('electron')
 
 const { PythonShell } = require('python-shell');
 const py_main = app.getAppPath() + "/app/py/main.py"
+
+const GameState = {
+  "MENU": 0,
+  "DANCING": 1
+};
+
+var gameState = GameState.MENU;
+
+var windowReference = null;
 
 function createWindow() {
   // Create the browser window.
@@ -33,6 +41,12 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow);
 
+// Register IPC
+ipcMain.on('message', (event, arg) => {
+  if (arg == 'toggle-state') {
+    toggleState();
+  }
+})
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -56,13 +70,24 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+function toggleState() {
+  if (gameState == GameState.MENU) {
+    gameState = GameState.DANCING;
+    sendToRenderer('viewport-state', 'visible');
+  } else if (gameState == GameState.DANCING) {
+    gameState = GameState.MENU;
+    sendToRenderer('viewport-state', 'hidden');
+  }
+}
+
 function runPython() {
   // Use python shell
   var pyshell = new PythonShell(py_main);
 
-  pyshell.on('message', function (message) {
-      // received base64 encoded image, display
-      sendToDom('document.getElementById("viewport").setAttribute("src", "data:image/png;base64,' + message + '")')
+  pyshell.on('message', (message) => {
+    if (gameState == GameState.DANCING) {
+      sendToRenderer('image', message);
+    }
   });
 
   // end the input stream and allow the process to exit
@@ -75,8 +100,6 @@ function runPython() {
   });
 }
 
-function sendToDom(command) {
-  windowReference.webContents.executeJavaScript(command, function (result) {
-    console.log(result)
-  });
+function sendToRenderer(title, message) {
+  windowReference.webContents.send(title, message);
 }
