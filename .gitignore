@@ -1,4 +1,4 @@
 
 .DS_Store
 /node_modules
-/app/py/__pycache__
+__pycache__
