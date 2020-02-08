@@ -50,8 +50,8 @@ ipcMain.on('message', (event, arg) => {
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
-  mainWindow.WebContents.openDevTools();
+  windowReference.close();
+
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== "darwin") {
