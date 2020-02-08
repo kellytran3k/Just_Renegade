@@ -18,5 +18,8 @@
   "homepage": "https://github.com/kellytran3k/Just_Renegade#readme",
   "devDependencies": {
     "electron": "^8.0.0"
+  },
+  "dependencies": {
+    "python-shell": "^1.0.8"
   }
 }
