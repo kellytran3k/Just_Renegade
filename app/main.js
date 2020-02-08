@@ -1,7 +1,27 @@
 const electron = require("electron");
 const { app, BrowserWindow } = require("electron");
 
+const { PythonShell } = require('python-shell');
+const py_main = app.getAppPath() + "/app/py/main.py"
+
 function createWindow() {
+  // Use python shell
+  var pyshell = new PythonShell(py_main);
+
+  pyshell.on('message', function (message) {
+      // received a message sent from the Python script (a simple "print" statement)
+      console.log("[py] " + message);
+  });
+
+  // end the input stream and allow the process to exit
+  pyshell.end(function (err) {
+      if (err) {
+          throw err;
+      }
+
+      console.log('main python script finished');
+  });
+
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
