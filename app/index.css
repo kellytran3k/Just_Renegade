@@ -1,13 +1,25 @@
 /*-- Base Styles --*/
 @import url('https://fonts.googleapis.com/css?family=Vibur&display=swap');
 
-
+html {
+    cursor: url('../images/handcursor.png'), auto;
+}
 body {
   background-image: url("https://www.dropbox.com/s/2ct0i6kc61vp0bh/wall.jpg?raw=1");
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
   background-color: #141414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: inline;
+}
+
+p {
+  color: white;
+  align-content: center;
+  display: block;
 }
 
 
@@ -54,4 +66,15 @@ body {
     0 0 38px rgba(30,132,242,0.88),
     0 0 60px rgba(30,132,242,1);
   }
+}
+
+#cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    box-sizing: border-box;
+    transition: 0.1s;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
 }
