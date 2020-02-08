@@ -10,7 +10,7 @@ const GameState = {
   "DANCING": 1
 };
 
-var gameState = GameState.MENU;
+var gameState = GameState.DANCING;
 
 var windowReference = null;
 
