@@ -13,11 +13,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: inline;
 }
 
 p {
   color: white;
   align-content: center;
+  display: block;
 }
 
 
