@@ -23,9 +23,7 @@ command = "ffmpeg -i {} -ab 160k -ac 2 -ar 44100 -vn {}".format(video_path, audi
 subprocess.call(command, shell=True)
 
 pygame.init()
-audio = pygame.mixer.Sound(audio_path)
-
-audio_on = False
+current_audio = None
 
 driver = webdriver.Chrome()
 driver.get("file:///{}".format(os.path.abspath("app/index.html")))
@@ -38,11 +36,11 @@ if not debug:
     sys.path.append("../../openpose/")
 
 def playSound(filename):
-    global audio_on
+    global current_audio
 
-    if not audio_on:
-        audio_on = True
-        audio.play()
+    if current_audio is None:
+        current_audio = pygame.mixer.Sound(audio_path)
+        current_audio.play()
 
 def resize(img, scale):
     width = int(img.shape[1] * scale)
@@ -129,9 +127,11 @@ def start_game(video_file):
     end_game()
 
 def end_game():
+    global current_audio
+
     print("HIDE")
-    audio_on = False
-    audio.stop()
+    current_audio.stop()
+    current_audio = None
     set_viewport("hidden")
     execute("resetPage()")
 
