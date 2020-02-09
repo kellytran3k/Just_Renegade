@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Vibur&display=swap');
 
 html {
-    cursor: url('../images/handcursor.png'), auto;
+    cursor: url('../images/neonPointer.png'), auto;
 }
 body {
   background-image: url("https://www.dropbox.com/s/2ct0i6kc61vp0bh/wall.jpg?raw=1");
@@ -92,7 +92,12 @@ p {
 }
 
 .menu-button-group {
+    position: fixed;
+    top: 65%;
+    left: 25%;
     text-align: center;
+    justify-content: center;
+
 }
 
 .menu-button-box {
@@ -112,7 +117,7 @@ p {
   .menu-button {
     font-family: "Vibur", cursive;
     font-weight: 300;
-    font-size: 2.9em;
+    font-size: 3em;
     margin: 15px 0 0;
     color: rgba(120, 0, 50, .5);
   }
