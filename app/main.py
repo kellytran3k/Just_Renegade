@@ -49,13 +49,15 @@ def resize(img, scale):
 
     return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
-def resize_match(img1, img2):
-    h1 = img1.shape[0]
-    h2 = img2.shape[0]
+def resize_match_width(img, width):
+    scale = width / img.shape[1]
 
-    scale = h2 / h1
+    return resize(img, scale)
 
-    return resize(img1, scale)
+def resize_match_height(img, height):
+    scale = height / img.shape[0]
+
+    return resize(img, scale)
 
 def op_analyze(img):
     return img
@@ -92,19 +94,26 @@ def start_game(video_file):
         if not success:
             break
 
+        vframe = resize_match_height(vframe, 720)
+
         _, user_cam = cam.read()
         user_cam = resize(user_cam, 0.5)
         user_cam = cv2.flip(user_cam, 1)
+        user_cam = resize_match_height(user_cam, vframe.shape[0])
 
-        vframe = resize_match(vframe, user_cam)
-
-        w = user_cam.shape[1] + vframe.shape[1]
-        wd = w - user_cam.shape[1]
+        w = vframe.shape[1] * 2
         h = user_cam.shape[0]
         stitch = np.zeros((h, w, 3), np.uint8)
 
+        hw = int(w / 2)
+
+        uc1 = int(w / 2)
+        uc2 = uc1 + vframe.shape[1]
+
+        user_cam = user_cam[0:vframe.shape[0], uc1:uc2]
+
         stitch[0:vframe.shape[0], 0:vframe.shape[1]] = vframe
-        stitch[0:vframe.shape[0], wd:w] = user_cam
+        stitch[0:vframe.shape[0], hw:w] = user_cam
 
         playSound(audio_path)
         send_img(stitch)
