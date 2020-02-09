@@ -4,9 +4,11 @@
 	<img src="example.png" width="50%"/>
 </div>
 
-Just Renegade TikTok Skeleton Tracking App, a UGAHacks 5 submission. Uses OpenPose/OpenCV to process videos of TikTok dances and user submissions, then uses geometric angle differentiation and advanced mathematics and data analysis to compare for accuracy. No fully live demo right now due to hackathon restrictions on development time but real-time data analysis and comparison can be implemented in the future.
+Just Renegade TikTok Skeleton Tracking App, a UGAHacks 5 submission. We developed a pseudo native app using Python and front-end web technologies. Users interact with a Selenium-controlled Chrome browser, which changes the text in an invisible paragraph tag to communicate with a Python script. This script controls the state of the game and even edits the DOM to display the video. We used the Open Pose library to detect poses, and using some clever math involving calculating angles between points of interest, we compared the user's video to the original video to score their accuracy.
 
-We followed the [OpenPose installation guide](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md) to build the necessary libraries to process the input data. A result video with a skeleton tracking overlay is generated in addition to tons of json output data, upon which we conducted data analysis with Python scripts. All of this is then loaded with a Bootstrap/JQuery frontend and displayed as a webpage for the end user.
+OpenPose is used to process the input data. A result video with a skeleton tracking overlay is generated in addition to tons of json output data, upon which we conducted data analysis with Python scripts. All of this is then loaded with a Bootstrap/JQuery frontend and displayed as a webpage for the end user.
+
+No fully live demo right now due to hackathon restrictions on development time but real-time data analysis and comparison can be implemented in the future.
 
 * [Usage](#usage)
 * [Documentation](#documentation)
