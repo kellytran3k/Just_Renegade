@@ -96,4 +96,13 @@ def start_game(video_file):
     cam.release()
     video.release()
 
+while True:
+    input = driver.find_element_by_id("sel-in").get_attribute("textContent")
+
+    if input:
+        print(input)
+        execute('document.getElementById("sel-in").innerHTML = ""')
+    
+    time.sleep(0.1)
+
 start_game("/Users/kphan/trishRenegadeVid.mov")
