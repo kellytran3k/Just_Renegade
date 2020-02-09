@@ -1,5 +1,9 @@
 # Just Renegade
 
+<div align="center">
+	<img src="example.png" width="50%"/>
+</div>
+
 Just Renegade TikTok Skeleton Tracking App, a UGAHacks 5 submission. Uses OpenPose/OpenCV to process videos of TikTok dances and user submissions, then uses geometric angle differentiation and advanced mathematics and data analysis to compare for accuracy. No fully live demo right now due to hackathon restrictions on development time but real-time data analysis and comparison can be implemented in the future.
 
 We followed the [OpenPose installation guide](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md) to build the necessary libraries to process the input data. A result video with a skeleton tracking overlay is generated in addition to tons of json output data, upon which we conducted data analysis with Python scripts. All of this is then loaded with a Bootstrap/JQuery frontend and displayed as a webpage for the end user.
