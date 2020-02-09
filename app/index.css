@@ -92,19 +92,20 @@ p {
 }
 
 .menu-button-group {
-    position: block;
-    top: 50%;
-    left: 50%;
+    text-align: center;
+}
+
+.menu-button-box {
+    display: inline-block;
     width: 300px;
     height: 100px;
     margin: 30px 0 0 30px;
-    text-align: center;
     border-radius: 8px;
     border: 3px solid rgb(0, 40, 70);
     cursor: pointer;
   }
   
-  .menu-button-group:hover {
+  .menu-button-box:hover {
     animation: border-flicker 2s linear forwards;
   }
   
@@ -116,11 +117,11 @@ p {
     color: rgba(120, 0, 50, .5);
   }
   
-  .menu-button-group:hover .menu-button {
+  .menu-button-box:hover .menu-button {
     animation: text-flicker 2s linear forwards;
   }
   
-  .menu-button-group:hover .menu-button {
+  .menu-button-box:hover .first {
     animation: letter-flicker 3s linear infinite;
   }
   
