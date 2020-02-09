@@ -160,11 +160,11 @@ p {
 }
 
 .menu-button-group {
-    position: fixed;
-    top: 65%;
-    left: 25%;
+    position: relative;
     text-align: center;
     justify-content: center;
+
+    align-content: center;
 
 }
 
@@ -179,11 +179,10 @@ p {
   }
 
 .menu-button-back {
-  position: fixed;
-  top: 65%;
-  left: 37%;
+  align-content: center;
+  display: block;
   text-align: center;
-  justify-content: center;
+  position: relative;
 }
   
   .menu-button-box:hover {
