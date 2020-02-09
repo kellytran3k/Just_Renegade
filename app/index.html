@@ -18,20 +18,40 @@
 
 <body class='container'>
   <!--Main Title-->
-  <div class='sign text-center'>
+  <div class='sign text-center' id='main-title'>
     <h1 class='sign-title'>Just Renegade</h1>
   </div>
   <!--Buttons-->
-  <div class='menu-button-group'>
+  <div class='menu-button-group' id='all-buttons'>
     <div class='menu-button-box'>
       <a href='howTo.html' style='text-decoration: none'>
         <h1 class='menu-button'>How to <span class="first">P</span>lay</h1>
       </a>
     </div>
     <div class='menu-button-box'>
-      <h1 class='menu-button'>St<span class="first">a</span>rt</h1>
+      <h1 class='menu-button' onclick='displayLoadingBar()'>St<span class="first">a</span>rt</h1>
     </div>
   </div>
+  <!--Loading Bar-->
+  <div class='loading-page'>
+    <div class="preload" id='loading-bar'>
+      <div class="preload-status">
+        <div class="preload-status-bar"></div>
+        <div class="preload-status-info">LOADING</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function displayLoadingBar() {
+      document.getElementById('main-title').style.display = 'none';
+      document.getElementById('all-buttons').style.display = 'none';
+      document.getElementById('loading-bar').style.display = 'block';
+      setTimeout(function () {
+        document.getElementById('loading-bar').style.display = 'none';
+      }, 3000);
+    }
+
+  </script>
 
   <p id='sel-in' style='visibility: hidden;'></p>
 </body>
