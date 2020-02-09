@@ -8,7 +8,7 @@ from selenium import webdriver
 import os
 
 driver = webdriver.Chrome()
-driver.get("file:///{}".format(os.path.abspath("index.html")))
+driver.get("file:///{}".format(os.path.abspath("app/index.html")))
 
 target_fps = 20
 frame_time = 1 / target_fps
