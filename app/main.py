@@ -4,6 +4,7 @@ import numpy as np
 import base64
 import time
 import sys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 import os
 import subprocess
@@ -25,8 +26,11 @@ subprocess.call(command, shell=True)
 pygame.init()
 current_audio = None
 
-driver = webdriver.Chrome()
-driver.get("file:///{}".format(os.path.abspath("app/index.html")))
+driver = webdriver.Remote(
+    command_executor='http://localhost:4444/wd/hub',
+    desired_capabilities=DesiredCapabilities.CHROME)
+
+driver.get('http://justrenegade.tech')
 
 target_fps = 20
 frame_time = 1 / target_fps
