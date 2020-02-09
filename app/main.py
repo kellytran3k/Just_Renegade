@@ -20,6 +20,8 @@ subprocess.call(command, shell=True)
 
 pygame.init()
 
+audio_on = False
+
 driver = webdriver.Chrome()
 driver.get("file:///{}".format(os.path.abspath("app/index.html")))
 
@@ -31,8 +33,12 @@ if not debug:
     sys.path.append("../../openpose/")
 
 def playSound(filename):
-    pygame.mixer.music.load(filename)
-    pygame.mixer.music.play()
+    global audio_on
+
+    if not audio_on:
+        audio_on = True
+        pygame.mixer.music.load(filename)
+        pygame.mixer.music.play()
 
 def resize(img, scale):
     width = int(img.shape[1] * scale)
@@ -62,7 +68,12 @@ def send_img(img):
     
     execute('''document.getElementById('viewport').setAttribute('src', 'data:image/png;base64,{}');'''.format(img_code))
 
+def set_viewport(visible):
+    execute("document.getElementById('viewport').style.visibility = '{}'".format(visible))
+
 def start_game(video_file):
+    set_viewport("visible")
+
     cam = cv2.VideoCapture(0)
 
     video = cv2.VideoCapture(video_file)
@@ -72,8 +83,6 @@ def start_game(video_file):
     video_to_target_ratio = int(video_fps / target_fps)
     
     last = time.time()
-
-    playSound(audio_path)
 
     while video.isOpened():
         success, vframe = video.read()
@@ -95,8 +104,7 @@ def start_game(video_file):
         stitch[0:vframe.shape[0], 0:vframe.shape[1]] = vframe
         stitch[0:vframe.shape[0], wd:w] = user_cam
 
-        #stitch[0:h, 0:w] = user_cam
-
+        playSound(audio_path)
         send_img(stitch)
 
         elapsed = time.time() - last
@@ -114,8 +122,12 @@ def start_game(video_file):
     
     cam.release()
     video.release()
+    end_game()
 
-start_game(video_path)
+def end_game():
+    print("HIDE")
+    audio_on = False
+    set_viewport("hidden")
 
 while True:
     input = driver.find_element_by_id("sel-in").get_attribute("textContent")
