@@ -45,6 +45,18 @@
   <img id='viewport'></img>
 
 
+  <meta charset="utf-8">
+  <meta name="mouseTrail" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your Description Here">
+
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="index.css">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../app/mouseTrail.js"></script>
+
+
+
   <script>
     function displayLoadingBar() {
       document.getElementById('main-title').style.display = 'none';
@@ -54,6 +66,12 @@
         document.getElementById('sel-in').innerHTML = 'start';
         document.getElementById('loading-bar').style.display = 'none';
       }, 3000);
+    }
+
+    function resetPage() {
+      document.getElementById('main-title').style.display = 'block';
+      document.getElementById('all-buttons').style.display = 'block';
+      document.getElementById('loading-bar').style.display = 'none';
     }
   </script>
   <p id='sel-in' style='visibility: hidden;'></p>

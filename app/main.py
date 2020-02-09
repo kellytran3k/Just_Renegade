@@ -10,7 +10,11 @@ import subprocess
 import pygame
 
 video_path = os.path.abspath("app/video.mov")
+audio_folder_path = os.path.abspath("app/cache/")
 audio_path = os.path.abspath("app/cache/audio.wav")
+
+if not os.path.exists(audio_path):
+    os.mkdir(audio_folder_path)
 
 if os.path.exists(audio_path):
     os.remove(audio_path)
@@ -19,6 +23,7 @@ command = "ffmpeg -i {} -ab 160k -ac 2 -ar 44100 -vn {}".format(video_path, audi
 subprocess.call(command, shell=True)
 
 pygame.init()
+audio = pygame.mixer.Sound(audio_path)
 
 audio_on = False
 
@@ -37,8 +42,7 @@ def playSound(filename):
 
     if not audio_on:
         audio_on = True
-        pygame.mixer.music.load(filename)
-        pygame.mixer.music.play()
+        audio.play()
 
 def resize(img, scale):
     width = int(img.shape[1] * scale)
@@ -127,7 +131,9 @@ def start_game(video_file):
 def end_game():
     print("HIDE")
     audio_on = False
+    audio.stop()
     set_viewport("hidden")
+    execute("resetPage()")
 
 while True:
     input = driver.find_element_by_id("sel-in").get_attribute("textContent")
