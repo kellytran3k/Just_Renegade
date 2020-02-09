@@ -184,6 +184,16 @@ p {
     cursor: pointer;
   }
 
+  .menu-button-box1 {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    margin: 30px 0 0 0;
+    border-radius: 8px;
+    border: 3px solid rgb(0, 40, 70);
+    cursor: pointer;
+  }
+
 .menu-button-back {
   align-content: center;
   display: block;
@@ -194,6 +204,10 @@ p {
   .menu-button-box:hover {
     animation: border-flicker 2s linear forwards;
   }
+  .menu-button-box1:hover {
+    animation: border-flicker 2s linear forwards;
+  }
+  
   
   .menu-button {
     font-family: "Vibur", cursive;
@@ -206,8 +220,17 @@ p {
   .menu-button-box:hover .menu-button {
     animation: text-flicker 2s linear forwards;
   }
+
+  .menu-button-box1:hover .menu-button {
+    animation: text-flicker 2s linear forwards;
+  }
+  
   
   .menu-button-box:hover .first {
+    animation: letter-flicker 3s linear infinite;
+  }
+
+  .menu-button-box1:hover .first {
     animation: letter-flicker 3s linear infinite;
   }
   
