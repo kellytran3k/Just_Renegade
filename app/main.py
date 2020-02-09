@@ -100,9 +100,9 @@ while True:
     input = driver.find_element_by_id("sel-in").get_attribute("textContent")
 
     if input:
-        print(input)
+        print("Received from JS: {}".format(input))
         execute('document.getElementById("sel-in").innerHTML = ""')
+
+        start_game("/Users/kphan/trishRenegadeVid.mov")
     
     time.sleep(0.1)
-
-start_game("/Users/kphan/trishRenegadeVid.mov")
