@@ -10,7 +10,11 @@ import subprocess
 import pygame
 
 video_path = os.path.abspath("app/video.mov")
+audio_folder_path = os.path.abspath("app/cache/")
 audio_path = os.path.abspath("app/cache/audio.wav")
+
+if not os.path.exists(audio_path):
+    os.mkdir(audio_folder_path)
 
 if os.path.exists(audio_path):
     os.remove(audio_path)
