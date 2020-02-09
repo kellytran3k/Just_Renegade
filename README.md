@@ -1,16 +1,24 @@
 # Just Renegade
 
-Just Renegade desktop app
+Just Renegade TikTok Skeleton Tracking App
 
-# Quick start
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [License](#license)
 
-Make sure you have [Node.js](https://nodejs.org) installed, then type the following commands
+## Usage
 
-```
-git clone https://github.com/kellytran3k/Just_Renegade.git
-cd Just_Renegade
-npm install
-npm start
-```
+## Built With
+* [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) - Real-time multi-person keypoint detection library for body, face, hands, and foot estimation created and maintained by members of Carnegie Mellon University
 
-and you have a running desktop application on your screen.
+* [Bootstrap](https://getbootstrap.com/) - an open source toolkit for developing with HTML, CSS, and JS
+
+* [JQuery](https://jquery.com/) - a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax
+
+* [TikTok](https://www.tiktok.com/) - a video-sharing social networking service used to create short lip-sync, comedy, and talent videos
+
+## Documentation
+We did not have time to write documentation.
+
+## License
+This project is licensed under the MIT License - see the [License](LICENSE) file for details
