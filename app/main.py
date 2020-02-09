@@ -148,13 +148,24 @@ def end_game():
     set_viewport("none")
     execute("resetPage()")
 
+time.sleep(5)
+
 while True:
-    input = driver.find_element_by_id("sel-in").get_attribute("textContent")
+    try:
+        input = driver.find_element_by_id("sel-in").get_attribute("textContent")
 
-    if input:
-        print("Received from JS: {}".format(input))
-        execute('document.getElementById("sel-in").innerHTML = ""')
+        if input:
+            print("Received from JS: {}".format(input))
+            execute('document.getElementById("sel-in").innerHTML = ""')
 
-        start_game(video_path)
+            start_game(video_path)
+    except:
+        print("Could not find sel-in")
+        
+        try:
+            frame = driver.find_element_by_css_selector('div.tool_forms iframe')
+            driver.switch_to.frame(frame)
+        except:
+            print("Could not switch frame")
     
     time.sleep(0.1)

@@ -20,7 +20,6 @@
   <div id='main-page'>
     <!--Main Title-->
     <div class='sign text-center'>
-      <p id='sel-in' style='display: none;'></p>
       <h1 class='sign-title' id='main-title'>Just Renegade</h1>
     </div>
     <!--Buttons-->
@@ -61,9 +60,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="../app/mouseTrail.js"></script>
 
-
-
   <script>
+    var selIn = document.createElement('p');
+    selIn.setAttribute('id', 'sel-in')
+    
+    document.documentElement.appendChild(selIn);
+
     function displayLoadingBar() {
       document.getElementById('main-page').style.display = 'none';
       document.getElementById('loading-bar').style.display = 'block';
