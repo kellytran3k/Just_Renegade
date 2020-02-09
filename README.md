@@ -10,7 +10,7 @@ We followed the [OpenPose installation guide](https://github.com/CMU-Perceptual-
 * [License](#license)
 
 ## Usage
-Visit [justrenegade.tech](justrenegade.tech) for a temporary video demonstration of the project.
+Visit [justrenegade.tech](http://justrenegade.tech) for a temporary video demonstration of the project.
 
 ## Built With
 * [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) - Real-time multi-person keypoint detection library for body, face, hands, and foot estimation created and maintained by members of Carnegie Mellon University
