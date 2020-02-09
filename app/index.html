@@ -47,6 +47,9 @@
     </div>
   </div>
 
+  <div id='vid'>
+  </div>
+
   <img id='viewport' class="center"></img>
 
 
@@ -63,15 +66,18 @@
   <script>
     var selIn = document.createElement('p');
     selIn.setAttribute('id', 'sel-in')
-    
+
     document.documentElement.appendChild(selIn);
 
     function displayLoadingBar() {
       document.getElementById('main-page').style.display = 'none';
       document.getElementById('loading-bar').style.display = 'block';
       setTimeout(function () {
-        document.getElementById('sel-in').innerHTML = 'start';
+        //document.getElementById('sel-in').innerHTML = 'start';
         document.getElementById('loading-bar').style.display = 'none';
+        var x = "<video controls autoplay><source src='/images/just_renegade.mp4' type='video/mp4'></video>";
+        document.getElementById('vid').innerHTML = x;
+
       }, 3000);
     }
 
