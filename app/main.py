@@ -23,6 +23,7 @@ command = "ffmpeg -i {} -ab 160k -ac 2 -ar 44100 -vn {}".format(video_path, audi
 subprocess.call(command, shell=True)
 
 pygame.init()
+audio = pygame.mixer.Sound(audio_path)
 
 audio_on = False
 
@@ -41,8 +42,7 @@ def playSound(filename):
 
     if not audio_on:
         audio_on = True
-        pygame.mixer.music.load(filename)
-        pygame.mixer.music.play()
+        audio.play()
 
 def resize(img, scale):
     width = int(img.shape[1] * scale)
@@ -131,6 +131,7 @@ def start_game(video_file):
 def end_game():
     print("HIDE")
     audio_on = False
+    audio.stop()
     set_viewport("hidden")
     execute("resetPage()")
 
