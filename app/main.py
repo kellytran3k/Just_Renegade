@@ -132,6 +132,7 @@ def end_game():
     print("HIDE")
     audio_on = False
     set_viewport("hidden")
+    execute("resetPage()")
 
 while True:
     input = driver.find_element_by_id("sel-in").get_attribute("textContent")
