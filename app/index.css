@@ -166,10 +166,9 @@ p {
 }
 
 .menu-button-group {
-    position: relative;
+    position: inline-block;
     text-align: center;
     justify-content: center;
-
     align-content: center;
 
 }
