@@ -4,9 +4,7 @@
 	<img src="example.png" width="50%"/>
 </div>
 
-Just Renegade TikTok Skeleton Tracking App, a UGAHacks 5 submission. We developed a pseudo native app using Python and front-end web technologies. Users interact with a Selenium-controlled Chrome browser, which changes the text in an invisible paragraph tag to communicate with a Python script. This script controls the state of the game and even edits the DOM to display the video. We used the Open Pose library to detect poses, and using some clever math involving calculating angles between points of interest, we compared the user's video to the original video to score their accuracy.
-
-OpenPose is used to process the input data. A result video with a skeleton tracking overlay is generated in addition to tons of json output data, upon which we conducted data analysis with Python scripts. All of this is then loaded with a Bootstrap/JQuery frontend and displayed as a webpage for the end user.
+Just Renegade TikTok Skeleton Tracking App, a UGAHacks 5 submission. We developed a pseudo native app using Python and front-end web technologies. Users interact with a Selenium-controlled Chrome browser, which changes the text in an invisible paragraph tag to communicate with a Python script. This script controls the state of the game and even edits the DOM to display the video. We used the OpenPose library to detect poses, and using some clever math involving calculating angles between points of interest, we compared the user's video to the original video to score their accuracy. A result video with a skeleton tracking overlay is generated in addition to tons of json output data, upon which we conducted data analysis with Python scripts. All of this is then loaded with a Bootstrap/JQuery frontend and displayed as a webpage for the end user.
 
 No fully live demo right now due to hackathon restrictions on development time but real-time data analysis and comparison can be implemented in the future.
 
