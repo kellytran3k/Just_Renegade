@@ -17,32 +17,37 @@
 </head>
 
 <body class='container'>
-  <!--Main Title-->
-  <div class='sign text-center'>
-    <h1 class='sign-title' id='main-title'>Just Renegade</h1>
-  </div>
-  <!--Buttons-->
-  <div class='menu-button-group' id='all-buttons'>
-    <div class='menu-button-box'>
-      <a href='howTo.html' style='text-decoration: none'>
-        <h1 class='menu-button'>How to <span class="first">P</span>lay</h1>
-      </a>
+  <div id='main-page'>
+    <!--Main Title-->
+    <div class='sign text-center'>
+      <h1 class='sign-title' id='main-title'>Just Renegade</h1>
     </div>
-    <div class='menu-button-box'>
-      <h1 class='menu-button' onclick='displayLoadingBar()'>St<span class="first">a</span>rt</h1>
-    </div>
-  </div>
-  <!--Loading Bar-->
-  <div class='loading-page'>
-    <div class="preload" id='loading-bar'>
-      <div class="preload-status">
-        <div class="preload-status-bar"></div>
-        <div class="preload-status-info">LOADING</div>
+    <!--Buttons-->
+    <div class='menu-button-group' id='all-buttons'>
+      <div class='menu-button-box'>
+        <a href='howTo.html' style='text-decoration: none'>
+          <h1 class='menu-button'>How to <span class="first">P</span>lay</h1>
+        </a>
+      </div>
+      <div class='menu-button-box'>
+        <h1 class='menu-button' onclick='displayLoadingBar()'>St<span class="first">a</span>rt</h1>
       </div>
     </div>
   </div>
 
-  <img id='viewport'></img>
+  <!--Loading Bar-->
+  <div id='loading-bar'>
+    <div class='loading-page'>
+      <div class="preload">
+        <div class="preload-status">
+          <div class="preload-status-bar"></div>
+          <div class="preload-status-info">LOADING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img id='viewport' class="center"></img>
 
 
   <meta charset="utf-8">
@@ -59,8 +64,7 @@
 
   <script>
     function displayLoadingBar() {
-      document.getElementById('main-title').style.display = 'none';
-      document.getElementById('all-buttons').style.display = 'none';
+      document.getElementById('main-page').style.display = 'none';
       document.getElementById('loading-bar').style.display = 'block';
       setTimeout(function () {
         document.getElementById('sel-in').innerHTML = 'start';
@@ -69,12 +73,11 @@
     }
 
     function resetPage() {
-      document.getElementById('main-title').style.display = 'block';
-      document.getElementById('all-buttons').style.display = 'block';
+      document.getElementById('main-page').style.display = 'block';
       document.getElementById('loading-bar').style.display = 'none';
     }
   </script>
-  <p id='sel-in' style='visibility: hidden;'></p>
+  <p id='sel-in' style='display: none;'></p>
 </body>
 
 </html>

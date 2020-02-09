@@ -2,6 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Vibur&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #all-buttons {
     display: block;
 }

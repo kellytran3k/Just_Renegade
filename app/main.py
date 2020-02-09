@@ -73,10 +73,10 @@ def send_img(img):
     execute('''document.getElementById('viewport').setAttribute('src', 'data:image/png;base64,{}');'''.format(img_code))
 
 def set_viewport(visible):
-    execute("document.getElementById('viewport').style.visibility = '{}'".format(visible))
+    execute("document.getElementById('viewport').style.display = '{}'".format(visible))
 
 def start_game(video_file):
-    set_viewport("visible")
+    set_viewport("block")
 
     cam = cv2.VideoCapture(0)
 
@@ -141,7 +141,7 @@ def end_game():
     print("HIDE")
     current_audio.stop()
     current_audio = None
-    set_viewport("hidden")
+    set_viewport("none")
     execute("resetPage()")
 
 while True:
