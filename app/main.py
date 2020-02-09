@@ -35,16 +35,15 @@ def resize_match(img1, img2):
 def op_analyze(img):
     return img
 
-def send(message):
-    print(message)
-    sys.stdout.flush()
+def execute(command):
+    driver.execute_script(command)
 
 def send_img(img):
     _, buffer = cv2.imencode('.png', img)
     content = buffer.tobytes()
     img_code = base64.b64encode(content).decode('ascii')
     
-    send(img_code)
+    execute('''document.getElementById('viewport').setAttribute('src', 'data:image/png;base64,{}');'''.format(img_code))
 
 def start_game(video_file):
     cam = cv2.VideoCapture(0)
@@ -97,4 +96,4 @@ def start_game(video_file):
     cam.release()
     video.release()
 
-#start_game("/Users/kphan/trishRenegadeVid.mov")
+start_game("/Users/kphan/trishRenegadeVid.mov")
