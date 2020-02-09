@@ -49,7 +49,7 @@ p {
 .sign-title {
     font-family: "Vibur", cursive;
     font-size: 7rem;
-    text-align: left;
+    text-align: center;
     line-height: 1;
     color: #c6e2ff;
     animation: neon .08s ease-in-out infinite alternate;
