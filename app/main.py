@@ -6,6 +6,19 @@ import time
 import sys
 from selenium import webdriver
 import os
+import subprocess
+import pygame
+
+video_path = os.path.abspath("app/video.mov")
+audio_path = os.path.abspath("app/cache/audio.wav")
+
+if os.path.exists(audio_path):
+    os.remove(audio_path)
+
+command = "ffmpeg -i {} -ab 160k -ac 2 -ar 44100 -vn {}".format(video_path, audio_path)
+subprocess.call(command, shell=True)
+
+pygame.init()
 
 driver = webdriver.Chrome()
 driver.get("file:///{}".format(os.path.abspath("app/index.html")))
@@ -16,6 +29,10 @@ frame_time = 1 / target_fps
 debug = True
 if not debug:
     sys.path.append("../../openpose/")
+
+def playSound(filename):
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.play()
 
 def resize(img, scale):
     width = int(img.shape[1] * scale)
@@ -55,6 +72,8 @@ def start_game(video_file):
     video_to_target_ratio = int(video_fps / target_fps)
     
     last = time.time()
+
+    playSound(audio_path)
 
     while video.isOpened():
         success, vframe = video.read()
@@ -96,6 +115,8 @@ def start_game(video_file):
     cam.release()
     video.release()
 
+start_game(video_path)
+
 while True:
     input = driver.find_element_by_id("sel-in").get_attribute("textContent")
 
@@ -103,6 +124,6 @@ while True:
         print("Received from JS: {}".format(input))
         execute('document.getElementById("sel-in").innerHTML = ""')
 
-        start_game("/Users/kphan/trishRenegadeVid.mov")
+        start_game(video_path)
     
     time.sleep(0.1)
