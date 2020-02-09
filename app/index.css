@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Vibur&display=swap');
 
 html {
-    cursor: url('../images/handcursor.png'), auto;
+    cursor: url('../images/neonPointer.png'), auto;
 }
 body {
   background-image: url("https://www.dropbox.com/s/2ct0i6kc61vp0bh/wall.jpg?raw=1");
@@ -23,10 +23,11 @@ p {
   text-align: center;
   position: relative;
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 12;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.3em;
+  line-height: 3;
   text-transform: uppercase;
   text-shadow: 0 0 0.15em #fff;
   user-select: none;
@@ -92,35 +93,41 @@ p {
 }
 
 .menu-button-group {
-    position: block;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    top: 65%;
+    left: 25%;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.menu-button-box {
+    display: inline-block;
     width: 300px;
     height: 100px;
     margin: 30px 0 0 30px;
-    text-align: center;
     border-radius: 8px;
     border: 3px solid rgb(0, 40, 70);
     cursor: pointer;
   }
   
-  .menu-button-group:hover {
+  .menu-button-box:hover {
     animation: border-flicker 2s linear forwards;
   }
   
   .menu-button {
     font-family: "Vibur", cursive;
     font-weight: 300;
-    font-size: 2.9em;
+    font-size: 3em;
     margin: 15px 0 0;
     color: rgba(120, 0, 50, .5);
   }
   
-  .menu-button-group:hover .menu-button {
+  .menu-button-box:hover .menu-button {
     animation: text-flicker 2s linear forwards;
   }
   
-  .menu-button-group:hover .menu-button {
+  .menu-button-box:hover .first {
     animation: letter-flicker 3s linear infinite;
   }
   
