@@ -4,6 +4,11 @@ import numpy as np
 import base64
 import time
 import sys
+from selenium import webdriver
+import os
+
+driver = webdriver.Chrome()
+driver.get("file:///{}".format(os.path.abspath("index.html")))
 
 target_fps = 20
 frame_time = 1 / target_fps
@@ -92,4 +97,4 @@ def start_game(video_file):
     cam.release()
     video.release()
 
-start_game("/Users/kphan/trishRenegadeVid.mov")
+#start_game("/Users/kphan/trishRenegadeVid.mov")
