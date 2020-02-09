@@ -9,7 +9,7 @@ import os
 import subprocess
 import pygame
 
-video_path = os.path.abspath("app/video.mov")
+video_path = os.path.abspath("app/just_renegade.mp4")
 audio_folder_path = os.path.abspath("app/cache/")
 audio_path = os.path.abspath("app/cache/audio.wav")
 
@@ -76,15 +76,11 @@ def set_viewport(visible):
     execute("document.getElementById('viewport').style.visibility = '{}'".format(visible))
 
 def start_game(video_file):
-    set_viewport("visible")
-
-    cam = cv2.VideoCapture(0)
+    set_viewport("block")
 
     video = cv2.VideoCapture(video_file)
     video_fps = video.get(cv2.CAP_PROP_FPS)
-
-    current_video_frame = 0
-    video_to_target_ratio = int(video_fps / target_fps)
+    frame_time = 1 / video_fps
     
     last = time.time()
 
@@ -96,32 +92,13 @@ def start_game(video_file):
 
         vframe = resize_match_height(vframe, 720)
 
-        _, user_cam = cam.read()
-        user_cam = resize(user_cam, 0.5)
-        user_cam = cv2.flip(user_cam, 1)
-        user_cam = resize_match_height(user_cam, vframe.shape[0])
-
-        w = vframe.shape[1] * 2
-        h = user_cam.shape[0]
-        stitch = np.zeros((h, w, 3), np.uint8)
-
-        hw = int(w / 2)
-
-        uc1 = int(w / 2)
-        uc2 = uc1 + vframe.shape[1]
-
-        user_cam = user_cam[0:vframe.shape[0], uc1:uc2]
-
-        stitch[0:vframe.shape[0], 0:vframe.shape[1]] = vframe
-        stitch[0:vframe.shape[0], hw:w] = user_cam
-
         playSound(audio_path)
-        send_img(stitch)
+        send_img(vframe)
 
         elapsed = time.time() - last
         frames_to_skip = elapsed * video_fps
 
-        for i in range(0, int(frames_to_skip)):
+        for i in range(0, int(frames_to_skip) - 1):
             success, img = video.read()
 
             if not success:
@@ -131,7 +108,6 @@ def start_game(video_file):
 
         # time.sleep(frame_time)
     
-    cam.release()
     video.release()
     end_game()
 
@@ -141,7 +117,7 @@ def end_game():
     print("HIDE")
     current_audio.stop()
     current_audio = None
-    set_viewport("hidden")
+    set_viewport("none")
     execute("resetPage()")
 
 while True:
