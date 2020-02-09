@@ -82,7 +82,7 @@ def set_viewport(visible):
 def start_game(video_file):
     set_viewport("block")
 
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(-1)
 
     video = cv2.VideoCapture(video_file)
     video_fps = video.get(cv2.CAP_PROP_FPS)
@@ -148,8 +148,6 @@ def end_game():
     set_viewport("none")
     execute("resetPage()")
 
-time.sleep(5)
-
 while True:
     try:
         input = driver.find_element_by_id("sel-in").get_attribute("textContent")
@@ -163,7 +161,7 @@ while True:
         print("Could not find sel-in")
         
         try:
-            frame = driver.find_element_by_css_selector('div.tool_forms iframe')
+            frame = driver.find_element_by_css_selector('frame')
             driver.switch_to.frame(frame)
         except:
             print("Could not switch frame")
