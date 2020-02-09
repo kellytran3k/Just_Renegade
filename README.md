@@ -19,6 +19,8 @@ Visit [justrenegade.tech](http://justrenegade.tech) for a temporary video demons
 ## Built With
 * [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) - Real-time multi-person keypoint detection library for body, face, hands, and foot estimation created and maintained by members of Carnegie Mellon University
 
+* [Selenium](https://selenium.dev/) - a portable framework for testing web applications; provides a playback tool for authoring functional tests without the need to learn a test scripting language
+
 * [NumPy](https://numpy.org/) - a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions
 
 * [Bootstrap](https://getbootstrap.com/) - an open source toolkit for developing with HTML, CSS, and JS
