@@ -27,7 +27,7 @@ p {
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.3em;
-  line-height: 3;
+  line-height: 2.5;
   text-transform: uppercase;
   text-shadow: 0 0 0.15em #fff;
   user-select: none;
@@ -109,6 +109,14 @@ p {
     border: 3px solid rgb(0, 40, 70);
     cursor: pointer;
   }
+
+.menu-button-back {
+  position: fixed;
+  top: 65%;
+  left: 37%;
+  text-align: center;
+  justify-content: center;
+}
   
   .menu-button-box:hover {
     animation: border-flicker 2s linear forwards;
